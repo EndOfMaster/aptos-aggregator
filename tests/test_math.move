@@ -93,19 +93,19 @@ module aggregator::test_math {
     }
 
     #[test]
-    #[expected_failure(abort_code = 0x60002)] // EDIVISION_BY_ZERO
+    #[expected_failure(abort_code = 0x107d2, location = aggregator::math)] // EDIVISION_BY_ZERO
     fun test_safe_div_by_zero() {
         math::safe_div(100, 0);
     }
 
     #[test]
-    #[expected_failure(abort_code = 0x60001)] // EINVALID_AMOUNT
+    #[expected_failure(abort_code = 0x107d1, location = aggregator::math)] // EINVALID_AMOUNT
     fun test_invalid_fee_rate() {
         math::calculate_fee(1000, 10001); // Fee rate > 100%
     }
 
     #[test]
-    #[expected_failure(abort_code = 0x60001)] // EINVALID_AMOUNT
+    #[expected_failure(abort_code = 0x107d1, location = aggregator::math)] // EINVALID_AMOUNT
     fun test_invalid_slippage() {
         math::calculate_min_output(1000, 10001); // Slippage > 100%
     }

@@ -7,6 +7,7 @@ module aggregator::router {
     use aptos_framework::coin::{Self, Coin};
     use aptos_framework::event::{Self, EventHandle};
     use aptos_framework::account;
+    use aptos_framework::timestamp;
 
     // Error codes
     const EINSUFFICIENT_OUTPUT_AMOUNT: u64 = 1001;
@@ -80,9 +81,10 @@ module aggregator::router {
         let amount_in = coin::value(&coin_in);
         assert!(amount_in > 0, error::invalid_argument(EZERO_AMOUNT));
 
-        let coin_out = match (dex_id) {
-            DEX_CETUS => swap_via_cetus<CoinIn, CoinOut>(coin_in, pool_address),
-            _ => abort error::invalid_argument(EUNSUPPORTED_DEX)
+        let coin_out = if (dex_id == DEX_CETUS) {
+            swap_via_cetus<CoinIn, CoinOut>(coin_in, pool_address)
+        } else {
+            abort error::invalid_argument(EUNSUPPORTED_DEX)
         };
 
         let amount_out = coin::value(&coin_out);
@@ -107,7 +109,7 @@ module aggregator::router {
             path,
             amount_in,
             amount_out,
-            timestamp: aptos_framework::timestamp::now_seconds(),
+            timestamp: timestamp::now_seconds(),
         });
 
         coin_out
@@ -130,7 +132,7 @@ module aggregator::router {
 
         // TODO: Implement multi-hop logic
         // This would require dynamic type handling or pre-defined paths
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 
     /// Swap via Cetus AMM
@@ -140,7 +142,7 @@ module aggregator::router {
     ): Coin<CoinOut> {
         // TODO: Integrate with Cetus AMM Aptos version
         // This should call the appropriate Cetus AMM functions
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 
     /// Admin functions

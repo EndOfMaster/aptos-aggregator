@@ -26,12 +26,12 @@ module aggregator::pancake_adapter {
         
         // TODO: Integrate with PancakeSwap on Aptos
         // This will depend on PancakeSwap's specific implementation on Aptos
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 
     #[view]
     public fun get_quote<CoinIn, CoinOut>(amount_in: u64): u64 {
         // TODO: Get quote from PancakeSwap
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 }

@@ -37,7 +37,7 @@ module aggregator::cetus_adapter {
         // );
 
         // For now, we'll abort as this needs integration with your specific AMM
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
 
         // let amount_out = coin::value(&coin_b);
         
@@ -62,7 +62,7 @@ module aggregator::cetus_adapter {
         let amount_in = coin::value(&coin_b);
         
         // TODO: Similar implementation as swap_a_to_b but in reverse direction
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 
     /// Get quote for swap amount
@@ -73,7 +73,7 @@ module aggregator::cetus_adapter {
     ): u64 {
         // TODO: Implement quote calculation using Cetus AMM math
         // This should call your AMM's quote functions
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 
     /// Check if pool exists and get pool info
@@ -81,6 +81,6 @@ module aggregator::cetus_adapter {
     public fun get_pool_info<CoinA, CoinB>(): (bool, u64, u64) {
         // TODO: Get pool reserves and check if pool exists
         // Returns (pool_exists, reserve_a, reserve_b)
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 }

@@ -31,12 +31,12 @@ module aggregator::liquidswap_adapter {
         //     min_amount_out
         // );
         
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 
     #[view]
     public fun get_quote<CoinIn, CoinOut>(amount_in: u64): u64 {
         // TODO: Get quote from LiquidSwap
-        abort error::unimplemented(0)
+        abort error::unavailable(0)
     }
 }

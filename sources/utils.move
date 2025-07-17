@@ -2,6 +2,7 @@
 module aggregator::utils {
     use std::vector;
     use std::type_info::{Self, TypeInfo};
+    use std::string::{Self, String};
     use aptos_framework::coin;
 
     /// Check if two types are the same
@@ -11,8 +12,8 @@ module aggregator::utils {
 
     /// Get coin type name as string
     public fun get_coin_name<CoinType>(): vector<u8> {
-        let type_info = type_info::type_of<CoinType>();
-        type_info::type_name(&type_info)
+        let type_name = type_info::type_name<CoinType>();
+        *string::bytes(&type_name)
     }
 
     /// Check if coin is registered
@@ -22,12 +23,8 @@ module aggregator::utils {
 
     /// Sort two coin types for consistent ordering
     public fun sort_coins<CoinA, CoinB>(): bool {
-        let type_a = type_info::type_of<CoinA>();
-        let type_b = type_info::type_of<CoinB>();
-        
-        // Compare type names as bytes for consistent ordering
-        let name_a = type_info::type_name(&type_a);
-        let name_b = type_info::type_name(&type_b);
+        let name_a = *string::bytes(&type_info::type_name<CoinA>());
+        let name_b = *string::bytes(&type_info::type_name<CoinB>());
         
         compare_vectors(&name_a, &name_b)
     }
