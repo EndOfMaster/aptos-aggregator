@@ -12,7 +12,7 @@ if ! command -v aptos &> /dev/null; then
 fi
 
 # Default values
-NETWORK="testnet"
+NETWORK="devnet"
 PROFILE="default"
 FEE_RATE=30  # 0.3% in basis points
 FEE_COLLECTOR=""

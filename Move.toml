@@ -1,27 +1,17 @@
 [package]
-name = "CetusAptosAggregator"
+name = "AptosAggregator"
 version = "1.0.0"
-authors = ["Cetus Protocol"]
+authors = [""]
 
 [addresses]
-aggregator = "0x42"
-cetus_amm = "0x43"
-aptos_framework = "0x1"
-aptos_std = "0x1"
+aggregator = "_"
+cetus_amm = "_"
 
 [dev-addresses]
+aggregator = "0x42"
+cetus_amm = "0x43"
 
 [dependencies.AptosFramework]
-git = "https://github.com/aptos-labs/aptos-core.git"
-rev = "aptos-cli-v2.5.0"
-subdir = "aptos-move/framework/aptos-framework"
-
-[dependencies.AptosStdlib]
-git = "https://github.com/aptos-labs/aptos-core.git"  
-rev = "aptos-cli-v2.5.0"
-subdir = "aptos-move/framework/aptos-stdlib"
-
-[dependencies.MoveStdlib]
-git = "https://github.com/aptos-labs/aptos-core.git"
-rev = "aptos-cli-v2.5.0"
-subdir = "aptos-move/framework/move-stdlib"
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "mainnet"
+subdir = "aptos-framework"
